@@ -21,7 +21,6 @@ __pycache__/
 
 # Local configuration
 .env
-.env.*
 
 # OS junk
 .DS_Store
