@@ -9,6 +9,21 @@ from graph_client import GraphClient
 
 def parse_graph_datetime(value: str) -> datetime:
     normalized = value.replace("Z", "+00:00")
+    if "." in normalized:
+        base, rest = normalized.split(".", 1)
+        offset = ""
+        # split offset if present
+        if "+" in rest:
+            digits, offset = rest.split("+", 1)
+            offset = "+" + offset
+        elif "-" in rest[1:]:
+            # avoid the leading '-' of fractional part by slicing from index 1
+            idx = rest[1:].find("-") + 1
+            digits, offset = rest[:idx], rest[idx:]
+        else:
+            digits = rest
+        digits = digits[:6]  # datetime.fromisoformat supports up to microseconds
+        normalized = f"{base}.{digits}{offset}"
     return datetime.fromisoformat(normalized).astimezone(timezone.utc)
 
 
