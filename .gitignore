@@ -1,0 +1,28 @@
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Local configuration
+.env
+.env.*
+
+# OS junk
+.DS_Store
+Thumbs.db
